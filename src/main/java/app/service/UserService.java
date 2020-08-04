@@ -15,4 +15,9 @@ public class UserService {
     public Optional<Userr> findUserForLogin(String email) {
         return userRepo.findByEmail(email);
     }
+
+
+    public Userr findById(Long id) {
+        return userRepo.findById(id).orElseThrow(()->new RuntimeException());
+    }
 }

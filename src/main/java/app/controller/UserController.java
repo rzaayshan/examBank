@@ -29,18 +29,19 @@ public class UserController {
         return "select";
     }
 
-    /**
-     * http://localhost:8080/send?mail=rza.ayshan@gmail.com&pay=1000&month=12
-     */
-    @RequestMapping("send")
-    public void sendMail(@RequestParam String mail,@RequestParam int pay, @RequestParam int month, Authentication au) throws MessagingException {
-        if(getLoggedUser(au).getId()==0)
-            throw new RuntimeException();
 
-        String body = service.select_customers(pay, month).toString();
-
-        sender.send(mail, "List of customers", body);
-    }
+//    /**
+//     * http://localhost:8080/send?mail=rza.ayshan@gmail.com&pay=1000&month=12
+//     */
+//    @RequestMapping("send")
+//    public void sendMail(@RequestParam String mail,@RequestParam int pay, @RequestParam int month, Authentication au) throws MessagingException {
+//        if(getLoggedUser(au).getId()==0)
+//            throw new RuntimeException();
+//
+//        String body = service.select_customers(pay, month).toString();
+//
+//        sender.send(mail, "List of customers", body);
+//    }
 
     UserrDetails getLoggedUser(Authentication authentication) {
         return (UserrDetails) authentication.getPrincipal();
