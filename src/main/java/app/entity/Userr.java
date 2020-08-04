@@ -10,6 +10,7 @@ import java.util.Set;
 public class Userr {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "u_id")
     private Long id;
     private String username;
     private String password;

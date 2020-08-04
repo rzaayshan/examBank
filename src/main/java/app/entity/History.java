@@ -10,6 +10,7 @@ import java.time.LocalDate;
 public class History {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "h_id")
     private Long id;
 
     private LocalDate date_req;
