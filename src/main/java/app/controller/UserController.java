@@ -6,12 +6,14 @@ import app.service.CustomerService;
 import app.service.SmtpMailSender;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.Authentication;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
 import java.util.List;
 
-@RestController
+@Controller
 @AllArgsConstructor
 public class UserController {
 
@@ -19,11 +21,12 @@ public class UserController {
     private final SmtpMailSender sender;
 
 
-    @RequestMapping("select")
-    public List<Customer> selectCustomers(@RequestParam int pay, @RequestParam int month, Authentication au){
+    @PostMapping("select")
+    public String selectCustomers(@RequestParam int pay, @RequestParam int month, Model model, Authentication au){
         if(getLoggedUser(au).getId()==0)
             throw new RuntimeException();
-        return service.select_customers(pay,month);
+        model.addAttribute("customers", service.select_customers(pay,month));
+        return "select";
     }
 
     /**
