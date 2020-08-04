@@ -28,7 +28,6 @@ public class MessageController {
         else{
             throw new RuntimeException();
         }
-
     }
 
     UserrDetails getLoggedUser(Authentication authentication) {

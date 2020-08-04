@@ -19,6 +19,7 @@ public class Customer{
     private Long id;
     private String name;
     private String surname;
+    private String email;
 
     @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY)
     Set<History> history;

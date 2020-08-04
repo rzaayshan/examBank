@@ -47,6 +47,20 @@ public class UserController {
         return (UserrDetails) authentication.getPrincipal();
     }
 
+    @RequestMapping("sendcustomers")
+    public void sendMail(@RequestParam int pay, @RequestParam int month){
+        service.select_customers(pay, month).forEach(c->{
+            String body = c.getName()+" "+c.getSurname();
+                    try {
+                        sender.send(c.getEmail(), "Offer", body);
+                    } catch (MessagingException e) {
+                        e.printStackTrace();
+                    }
+                }
+                );
+    }
+
+
 
 
 }
